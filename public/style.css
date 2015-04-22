@@ -1,0 +1,81 @@
+* {
+    font-family: Arial cursive;
+    box-sizing: border-box;
+}
+
+#chat-box {
+    height: 500px;
+    width: 400px;
+    border-bottom: 2px solid #3f3f3f;
+    overflow-y: scroll;
+    position: relative;
+}
+
+#chat-wrapper {
+    display: none;
+}
+
+#chat-container {
+    float: left;
+    border: 1px solid #3f3f3f;
+    position: relative;
+}
+
+#main-header {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-weight: 400;
+    color: #3f3f3f;
+}
+
+#chat-header {
+    width: 32.3%;
+    position: relative;
+    background: #FAFAFA;
+    padding: 5px;
+}
+
+#user-wrapper form button[type="submit"] {
+    padding: 6px;
+    position: relative;
+    background: #FAFAFA;
+    border: 1px solid #3f3f3f;
+    cursor: pointer;
+}
+
+#user-wrapper form input[type="text"] {
+    width: 20%;
+    position: relative;
+    padding: 3px;
+    padding-left: 5px;
+    border: 1px solid #3f3f3f;
+    border-radius: 5px;
+    margin: 5px;
+    margin-right: 1px;
+    margin-left: 1px;
+    height: 30px;
+}
+
+#chat-container form button[type="submit"] {
+    padding: 6px;
+    position: relative;
+    background: #FAFAFA;
+    border: 1px solid #3f3f3f;
+    cursor: pointer;
+    float: left;
+    margin-top: 450px;
+}
+
+#chat-container form input[type="text"] {
+    width: 85%;
+    padding: 3px;
+    position: relative;
+    padding-left: 10px;
+    border: 1px solid #3f3f3f;
+    border-radius: 5px;
+    margin: 5px;
+    height: 30px;
+    float: left;
+    margin-top: 450px;
+}

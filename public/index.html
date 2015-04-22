@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <section id="main-wrapper">
+        <section id="header">
+            <header id="main-header">Welcome to ChttrBx</header>
+        </section>
+        <section id="user-wrapper">
+            <section id="set-user">
+                <form id="user-form">
+                    <input id="user-input" type="text" name="name" placeholder="enter name" />
+                    <button type="submit" autofocus="true" form="user-form" name="button">Send</button>
+                </form>
+            </section>
+            <section id="user-info">
+                <span id="nick">Please Enter Nickname</span>
+                <span id="user-err"></span>
+            </section>
+        </section>
+        <section id="chat-wrapper">
+            <section id="chat-header">
+                <header>You are on ChttrBx</header>
+            </section>
+            <section id="chat-container">
+                <section id="chat-msg">
+                </section>
+                <section id="chat-box">
+                    <form action="#" id="chat-form">
+                        <input id="chat-input" type="text" name="name" placeholder="please type message" />
+                        <button type="submit" autofocus="true" form="chat-form" name="button">Send</button>
+                    </form>
+                </section>
+            </section>
+            <section id="nicks-container">
+                <section id="nicks">
+                </section>
+            </section>
+        </section>
+    </section>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+    // invoke io 
+    var socket = io();
+    // connect io to localhost:3000
+    socket.connect("http://localhost:3000");
+    // get all elems
+    // startng with nick elems (cache variables)
+    var mainHeader = document.getElementById("main-header"),
+        userForm = document.getElementById("user-form"),
+        // elem to print errors in entering nicknames
+        nickErr = document.getElementById("user-err"),
+        // elem to hold all nicks
+        nickElem = document.getElementById("nicks"),
+        userInput = document.getElementById("user-input"),
+        // elem to show and hide nick form
+        userWrapper = document.getElementById("user-wrapper"),
+        // chat elems
+        chatForm = document.getElementById("chat-form"),
+        chatInput = document.getElementById("chat-input"),
+        chatBox = document.getElementById("chat-box"),
+        chatMsg = document.getElementById("chat-msg"),
+        chatContent = document.getElementById("chat-container"),
+        chatWrapper = document.getElementById("chat-wrapper");
+
+    // bind nicknames event handler
+    userForm.addEventListener("submit", function(e) {
+        e = e || event; // work-around for IE
+        e.preventDefault(); // prevent default behaviour
+        // emit join event with user input and callback to check if selected nick is available
+        socket.emit("join", userInput.value, function(isNickAvailable) {
+            if (isNickAvailable) {
+                // hide usenname input area
+                userWrapper.style.display = "none";
+                // clear welcome to login
+                mainHeader.innerHTML = "";
+                // show and start the chat page
+                chatWrapper.style.display = "block";
+            } else {
+                // handle nick error
+                nickErr.innerHTML = "Nick already taken, please select another name";
+            }
+        });
+        // clear username input area
+        userInput.value = "";
+    });
+    // receive nicks data from server
+    socket.on("nicks", function(nicks) {
+        var i, len = nicks.length,
+            str = "";
+        for (i = 0; i < len; i += 1) {
+            // delimit strings into multiple lines
+            str += nicks[i] + "</br>";
+        }
+        nickElem.innerHTML = str;
+    });
+    // add perchat
+    chatForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        // emit new messages event showing new user input
+        socket.emit("messages", chatInput.value);
+        // clear chat input
+        chatInput.value = "";
+    });
+
+    function addMsg(data) {
+        chatMsg.innerHTML += ("<span>" + "<i>" + data.user + ": </i>" + data.msg + "</br>" + "</span>");
+        }
+    // listen for new messages from server 
+    socket.on("new messages", function(data) {
+        // display new messages from clients
+        addMsg(data);
+
+    });
+    // receive old messages
+    socket.on("old msg", function(data) {
+        // append old messages
+        var i, len = data.length;
+        for (i = 0; i < len; i += 1) {
+            addMsg(data[i]);
+        }
+    });
+    </script>
+</body>
+
+</html>
