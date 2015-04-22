@@ -49,10 +49,9 @@ io.on("connection", function(client) {
 		// return an instance of Query
 		// and use QueryBuilder interface
 		var query = NodeChat.find({}).sort("-updated").limit(10).exec(function(err, results) {
-			if(err) {
+			if (err) {
 				console.error(err);
-			}
-			else {
+			} else {
 				client.emit("old msg", results);
 			}
 		});
@@ -91,7 +90,7 @@ io.on("connection", function(client) {
 	});
 	client.on("disconnect", function() {
 		console.log(client.nickname + " logged off");
-		 var start = usernames.indexOf(client.nickname);
+		var start = usernames.indexOf(client.nickname);
 		// check if client has the property nickname
 		if (client.nickname) {
 			// remove nick from usernames array
