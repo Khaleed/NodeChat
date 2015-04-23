@@ -6,7 +6,10 @@
 #chat-box {
     height: 500px;
     width: 400px;
-    border-bottom: 2px solid #3f3f3f;
+    border-bottom: 1px solid #3f3f3f;
+    overflow: auto;
+    overflow-x: hidden;
+    -ms-overflow-y: hidden;
     overflow-y: scroll;
     position: relative;
 }
@@ -32,8 +35,8 @@
 #chat-header {
     width: 32.3%;
     position: relative;
-    background: #FAFAFA;
     padding: 5px;
+    margin: 5px;
 }
 
 #user-wrapper form button[type="submit"] {
@@ -45,13 +48,14 @@
 }
 
 #user-wrapper form input[type="text"] {
-    width: 20%;
+    width: 18%;
     position: relative;
     padding: 3px;
     padding-left: 5px;
     border: 1px solid #3f3f3f;
     border-radius: 5px;
-    margin: 5px;
+    margin-top: 12px;
+    margin-bottom: 8px;
     margin-right: 1px;
     margin-left: 1px;
     height: 30px;
@@ -76,6 +80,6 @@
     border-radius: 5px;
     margin: 5px;
     height: 30px;
-    float: left;
+    position: relative;
     margin-top: 450px;
 }

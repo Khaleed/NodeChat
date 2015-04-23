@@ -59,7 +59,7 @@ chatForm.addEventListener("submit", function(event) {
 function addMsg(data) {
         chatMsg.innerHTML += ("<i>" + data.user + ": </i>" + data.msg + "</br>");
     }
-    // listen for new messages event from server
+// listen for new messages event from server
 socket.on("new messages", function(data) {
     addMsg(data);
 });
