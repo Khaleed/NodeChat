@@ -15,9 +15,7 @@ var mainHeader = document.getElementById("main-header"),
     // chat elems
     chatForm = document.getElementById("chat-form"),
     chatInput = document.getElementById("chat-input"),
-    chatBox = document.getElementById("chat-box"),
     chatMsg = document.getElementById("chat-msg"),
-    chatContent = document.getElementById("chat-container"),
     chatWrapper = document.getElementById("chat-wrapper");
 // bind nicknames event handler
 userForm.addEventListener("submit", function(e) {

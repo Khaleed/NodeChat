@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-#chat-box {
+#chat-msg {
     height: 500px;
     width: 400px;
     border-bottom: 1px solid #3f3f3f;
@@ -48,7 +48,7 @@
 }
 
 #user-wrapper form input[type="text"] {
-    width: 18%;
+    width: 15%;
     position: relative;
     padding: 3px;
     padding-left: 5px;
@@ -68,7 +68,6 @@
     border: 1px solid #3f3f3f;
     cursor: pointer;
     float: left;
-    margin-top: 450px;
 }
 
 #chat-container form input[type="text"] {
@@ -81,5 +80,5 @@
     margin: 5px;
     height: 30px;
     position: relative;
-    margin-top: 450px;
+    float: left;
 }
