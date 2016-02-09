@@ -1,3 +1,8 @@
 node_modules
 .DS_Store
-npm-debug.lognode_modules/
+npm-debug.log*
+*.pid
+*.seed
+build/Release
+.npm
+.node_repl_history
